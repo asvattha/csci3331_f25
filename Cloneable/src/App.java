@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class App {
@@ -12,5 +14,14 @@ public class App {
 
         System.out.println(p1);
         System.out.println(p2); 
+
+
+        Person p3 = new Person("Tyler", 30, new ArrayList<>(List.of("Reading", "BirdWatching")));
+
+        ArrayList<Person> persons = new ArrayList<>();
+        persons.add(p1);
+        persons.add(p3);
+        Collections.sort(persons);
+        
     }
 }

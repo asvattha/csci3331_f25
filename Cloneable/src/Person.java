@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person implements Cloneable{
+public class Person implements Comparable<Person>, Cloneable{
     
     String name;
     int age;
@@ -26,9 +26,21 @@ public class Person implements Cloneable{
     }
 
     @Override
+    public int compareTo(Person p){
+        if(this.age > p.age)
+            return 1;
+        else if (this.age < p.age)
+            return -1;
+        else return 0;
+    }
+
+    @Override
     public Person clone() throws CloneNotSupportedException {
         Person p_copy = (Person) super.clone();
-        /* The following piece of code illustrates the deep copy */
+        /* The following piece of code illustrates the deep copy
+         * If you remove the following code and simply return p_copy, then
+         * it will be shallow copy
+         */
         List<String> hobbies_copy = new ArrayList<>();
         for(String hobby: this.hobbies) {
             hobbies_copy.add(hobby);
@@ -41,7 +53,7 @@ public class Person implements Cloneable{
     public String toString() {
         String hobbies_str = "";
         for (String hobby: hobbies) {
-            hobbies_str += hobby + ", ";
+            hobbies_str += hobby + ",";
         }
         hobbies_str = hobbies_str.substring(0, hobbies_str.length() - 1);
         return String.format("%s loves %s", this.name, hobbies_str);
