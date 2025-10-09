@@ -4,12 +4,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class MyEnlargeHandler implements EventHandler<ActionEvent> {
+public class MyOldEnlargeHandler implements EventHandler<ActionEvent> {
 
     StackPane centerPane;
     boolean flag;
 
-    public MyEnlargeHandler(StackPane centerPane) {
+    public MyOldEnlargeHandler(StackPane centerPane) {
         this.centerPane = centerPane;
         flag = false;
     }
@@ -27,7 +27,6 @@ public class MyEnlargeHandler implements EventHandler<ActionEvent> {
         imageView.setFitHeight(200);
         imageView.setFitWidth(200);
         centerPane.getChildren().clear();
-        System.out.println(centerPane.getChildren().isEmpty());
         centerPane.getChildren().add(imageView);
         System.out.println("Hello");
     }
