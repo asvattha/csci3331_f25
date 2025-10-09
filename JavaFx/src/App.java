@@ -13,41 +13,14 @@ import javafx.stage.Stage;
 
 public class App extends Application{
     
+    boolean flag = false;
 
     public void start(Stage primaryStage) {
-        
-        StackPane centerPane = new StackPane();
-
-        class MyEnlargeHandler implements EventHandler<ActionEvent> {
-
-            boolean flag;
-
-            public MyEnlargeHandler() {
-                flag = false;
-            }
-
-            @Override
-            public void handle(ActionEvent e) {
-                Image img = null;
-                if(flag) {
-                    img = new Image("images/einstein1.jfif");
-                } else {
-                    img = new Image("images/einstein2.jfif");
-                }
-                flag = !flag;
-                ImageView imageView = new ImageView(img);
-                imageView.setFitHeight(200);
-                imageView.setFitWidth(200);
-                centerPane.getChildren().clear();
-                centerPane.getChildren().add(imageView);
-                System.out.println("Hello");
-            }
-        }
         
         BorderPane bPane = new BorderPane();
 
         /*Center Pane */
-        
+        StackPane centerPane = new StackPane();
         Image img = new Image("images/einstein1.jfif");
         ImageView imageView = new ImageView(img);
         centerPane.getChildren().add(imageView);
@@ -64,8 +37,22 @@ public class App extends Application{
         bPane.setBottom(bottomPane);
 
         /* Handling event on buttons */
-        MyEnlargeHandler myHandler = new MyEnlargeHandler();
-        helloBtn.setOnAction(myHandler);
+        //MyEnlargeHandler myHandler = new MyEnlargeHandler();
+        helloBtn.setOnAction((ActionEvent e) -> {
+            Image image = null;
+            if(flag) {
+                image = new Image("images/einstein1.jfif");
+            } else {
+                image = new Image("images/einstein2.jfif");
+            }
+            flag = !flag;
+            ImageView imageView2 = new ImageView(image);
+            imageView2.setFitHeight(200);
+            imageView2.setFitWidth(200);
+            centerPane.getChildren().clear();
+            centerPane.getChildren().add(imageView2);
+            System.out.println("Hello");
+        });
 
         /* setting up Scene */
         Scene scene = new Scene(bPane, 400, 400);
